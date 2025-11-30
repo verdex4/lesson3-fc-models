@@ -50,7 +50,8 @@ class FullyConnectedModel(nn.Module):
                 layers.append(nn.Dropout(rate))
                 
             elif layer_type == 'batch_norm':
-                layers.append(nn.BatchNorm1d(prev_size))
+                momentum = layer_spec.get('momentum', 0.1)
+                layers.append(nn.BatchNorm1d(prev_size, momentum=momentum))
                 
             elif layer_type == 'layer_norm':
                 layers.append(nn.LayerNorm(prev_size))

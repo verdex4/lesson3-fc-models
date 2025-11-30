@@ -1,8 +1,9 @@
 import torch
 import matplotlib.pyplot as plt
 import os
+from utils.visualisation_utils import save_plot
 
-def plot_training_history(history):
+def plot_training_history(history, save_path=None, name=None):
     """Визуализирует историю обучения"""
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
     
@@ -16,6 +17,8 @@ def plot_training_history(history):
     ax2.set_title('Accuracy')
     ax2.legend()
     
+    if save_path and name:
+        save_plot(save_path, name)
     plt.tight_layout()
     plt.show()
 

@@ -35,9 +35,10 @@ def run_epoch(model, data_loader, criterion, optimizer=None, device='cpu', is_te
     return total_loss / len(data_loader), correct / total
 
 
-def train_model(model, train_loader, test_loader, epochs=10, lr=0.001, device='cpu'):
+def train_model(model, train_loader, test_loader, epochs=10, lr=0.001, device='cpu', optimizer=None):
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=lr)
+    if optimizer is None:
+        optimizer = optim.Adam(model.parameters(), lr=lr)
     
     train_losses, train_accs = [], []
     test_losses, test_accs = [], []
